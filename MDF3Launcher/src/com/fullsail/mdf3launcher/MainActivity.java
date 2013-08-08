@@ -6,15 +6,20 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends Activity {
+	
+	EditText cityName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		cityName = (EditText) findViewById(R.id.cityNameEditText);
 
-		// Switch views button
+		// Launch app button
 		Button switchViewsButton = (Button) findViewById(R.id.launchApp);
 		switchViewsButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -22,7 +27,7 @@ public class MainActivity extends Activity {
 				// TODO: send selected city name;
 				Intent sendIntent = new Intent();
 				sendIntent.setAction(Intent.ACTION_SEND);
-				sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+				sendIntent.putExtra(Intent.EXTRA_TEXT, cityName.getText().toString());
 				sendIntent.setType("text/plain");
 				startActivity(sendIntent);
 			}
