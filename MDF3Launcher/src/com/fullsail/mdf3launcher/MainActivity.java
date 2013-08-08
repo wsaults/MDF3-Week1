@@ -2,7 +2,6 @@ package com.fullsail.mdf3launcher;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -21,10 +20,11 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO: send selected city name;
-				Intent intent = new Intent("android.intent.action.MAIN");
-			    intent.setComponent(ComponentName.unflattenFromString("com.fullsail.weather"));
-			    intent.addCategory("android.intent.category.LAUNCHER");
-			    startActivity(intent);
+				Intent sendIntent = new Intent();
+				sendIntent.setAction(Intent.ACTION_SEND);
+				sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+				sendIntent.setType("text/plain");
+				startActivity(sendIntent);
 			}
 		});
 	}
