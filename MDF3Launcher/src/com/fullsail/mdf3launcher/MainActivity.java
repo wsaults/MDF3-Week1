@@ -1,3 +1,12 @@
+/*
+ * project 	MDF3Launcher
+ * 
+ * package 	com.fullsail.mdf3launcher
+ * 
+ * @author 	William Saults
+ * 
+ * date 	Aug 7, 2013
+ */
 package com.fullsail.mdf3launcher;
 
 import android.os.Bundle;
