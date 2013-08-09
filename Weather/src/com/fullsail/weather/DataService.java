@@ -1,11 +1,11 @@
 /*
- * project 	Java1Project
+ * project 	Weather
  * 
- * package 	com.fullsail.lib
+ * package 	com.fullsail.weather
  * 
  * @author 	William Saults
  * 
- * date 	Jul 10, 2013
+ * date 	Aug 8, 2013
  */
 package com.fullsail.weather;
 
@@ -84,7 +84,6 @@ public class DataService extends IntentService {
 			// Build the url
 			try{
 				String input = (city.equals("")) ? "Dallas" : city;
-//				city.setText(input);
 				
 				//encode in case user has included symbols such as spaces etc
 				String encodedSearch = URLEncoder.encode(input, "UTF-8");
@@ -94,16 +93,12 @@ public class DataService extends IntentService {
 				
 				getResponse(searchURL);
 				
-				//instantiate and execute AsyncTask
-//				new Request().execute(searchURL);
-				
 			}
 			catch(Exception e){ 
 				Log.e("Encoding the search url failed", e.toString());
 				e.printStackTrace(); 
 			}
 		} else {
-			
 			
 			// Fetch the json data from the data file
 			try {
@@ -153,8 +148,6 @@ public class DataService extends IntentService {
 		}
 		
 		storeString(stringBuilder.toString());
-		//return result string
-//		return stringBuilder.toString();
 	}
 	
 	public void storeString (String result) {
@@ -181,83 +174,4 @@ public class DataService extends IntentService {
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	 * The Class Request
-	private class Request extends AsyncTask<String, Void, String> {
-		/*
-		 * Carry out fetching task in background
-		 * - receives search URL via execute method
-		 *  (non-Javadoc)
-		 * @see android.os.AsyncTask#doInBackground(Params[])
-		@Override
-		protected String doInBackground(String... stringURL) {
-			//start building result which will be json string
-			StringBuilder stringBuilder = new StringBuilder();
-			//should only be one URL, receives array
-			for (String searchURL : stringURL) {
-				HttpClient client = new DefaultHttpClient();
-				try {
-					//pass search URL string to fetch
-					HttpGet get = new HttpGet(searchURL);
-					//execute request
-					HttpResponse response = client.execute(get);
-					//check status, only proceed if ok
-					StatusLine searchStatus = response.getStatusLine();
-					if (searchStatus.getStatusCode() == 200) {
-						//get the response
-						HttpEntity entity = response.getEntity();
-						InputStream content = entity.getContent();
-						//process the results
-						InputStreamReader input = new InputStreamReader(content);
-						BufferedReader reader = new BufferedReader(input);
-						String lineIn;
-						while ((lineIn = reader.readLine()) != null) {
-							stringBuilder.append(lineIn);
-						}
-					} else {
-						message.arg1 = Activity.RESULT_CANCELED;
-						Log.e("Status code not 200", "getStatusCode error");
-					}
-				} catch(Exception e){ 
-					message.arg1 = Activity.RESULT_CANCELED;
-					Log.e("The HTTP request did not work", e.toString());
-					e.printStackTrace(); 
-				}
-			}
-			//return result string
-			return stringBuilder.toString();
-		}
-		
-		/*
-		 * Process result of search query
-		 *  (non-Javadoc)
-		 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-
-		protected void onPostExecute(String result) {
-			//start preparing result string for display
-			try {
-				// Store the JSON string in text file.
-				_context = getBaseContext();
-				FileManager.storeStringFile(_context,FORECAST_TEXT_FILENAME, result, false);
-				
-				message.arg1 = Activity.RESULT_OK;
-				message.obj = "Service is Done";
-				
-				try {
-					messenger.send(message);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			catch (Exception e) {
-				message.arg1 = Activity.RESULT_CANCELED;
-				message.obj = "Service is Done";
-				Log.e("Exception occured while building the result object", e.toString());
-				e.printStackTrace();
-			}
-		}
-	}
-	*/
 }

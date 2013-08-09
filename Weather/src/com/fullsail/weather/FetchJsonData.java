@@ -1,11 +1,11 @@
 /*
- * project 	Java1Project
+ * project 	Weather
  * 
- * package 	com.fullsail.lib
+ * package 	com.fullsail.weather
  * 
  * @author 	William Saults
  * 
- * date 	Jun 12, 2013
+ * date 	Aug 8, 2013
  */
 package com.fullsail.weather;
 
