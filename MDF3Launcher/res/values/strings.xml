@@ -4,5 +4,15 @@
     <string name="app_name">MDF3Launcher</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    
+    <string-array name="cities_array">
+        <item>Dallas</item>
+        <item>Cupertino</item>
+        <item>New York</item>
+        <item>Miami</item>
+        <item>Las Vegas</item>
+        <item>Garland</item>
+        <item>Richardson</item>
+    </string-array>
 
 </resources>

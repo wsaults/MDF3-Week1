@@ -16,23 +16,30 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.Spinner;
 
 public class MainActivity extends Activity {
 	
-	EditText cityName;
 	Context context = this;
+	Spinner spinner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		
 		setContentView(R.layout.activity_main);
 		
-		cityName = (EditText) findViewById(R.id.cityNameEditText);
+		spinner = (Spinner) findViewById(R.id.citySpinner);
+		// Create an ArrayAdapter using the string array and a default spinner layout
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+		        R.array.cities_array, android.R.layout.simple_spinner_item);
+		// Specify the layout to use when the list of choices appears
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Apply the adapter to the spinner
+		spinner.setAdapter(adapter);
 
 		// Launch app button
 		Button switchViewsButton = (Button) findViewById(R.id.launchApp);
@@ -42,7 +49,7 @@ public class MainActivity extends Activity {
 				// TODO: send selected city name;
 				Intent sendIntent = new Intent();
 				sendIntent.setAction(Intent.ACTION_SEND);
-				sendIntent.putExtra(Intent.EXTRA_TEXT, cityName.getText().toString());
+				sendIntent.putExtra(Intent.EXTRA_TEXT, spinner.getSelectedItem().toString());
 				sendIntent.setType("text/plain");
 				startActivity(sendIntent);
 			}
